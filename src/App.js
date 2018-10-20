@@ -22,8 +22,18 @@ class App extends Component {
     var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9.5,
+    zoom: 12,
     center: myLatLng
+  });
+
+  /*let infoContent = {
+    Name:
+    Address:
+    picture:
+  }*/
+
+  var infowindow = new google.maps.InfoWindow({
+    content: "Hello world"
   });
 
 venues.forEach(markers => {
@@ -33,10 +43,12 @@ venues.forEach(markers => {
     title: markers.name,
     id: markers.id
   });
-
+  marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
 })
 
-  
+
 
 console.log(venues);
 console.log(google);
