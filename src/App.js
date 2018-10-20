@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { load_google_maps , load_places } from './utils'
+
 class App extends Component {
+  componentDidMount() {
+    let promiseGM = load_google_maps();
+    let promisePlaces = load_places();
+
+    Promise.all([
+      [promiseGM, promisePlaces]
+    ]).then(values => {
+      console.log(values);
+    })
+
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div id="map">
+
       </div>
     );
   }
