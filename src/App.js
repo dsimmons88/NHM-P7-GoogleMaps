@@ -22,7 +22,7 @@ class App extends Component {
     var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 9.5,
     center: myLatLng
   });
 
