@@ -30,16 +30,13 @@ venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
     map: map,
-    title: 'Hello World!'
+    title: markers.name,
+    id: markers.id
   });
 
 })
 
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
+  
 
 console.log(venues);
 console.log(google);
