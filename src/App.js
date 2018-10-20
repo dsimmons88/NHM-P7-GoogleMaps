@@ -19,6 +19,24 @@ class App extends Component {
     this.google = google;
     this.markers =[];
 
+    var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+    venues.forEach(venues => {
+      let marker = new google.maps.Marker({
+    position: { lat: venue.location.lat, lng:venue.location.lng },
+    map: this.map,
+    venue: venue,
+    id: venue.id,
+    name: venue.name,
+    animation: google.maps.Animation.DROP
+  });
+    })
+
 console.log(venues);
 console.log(google);
     })
