@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { load_google_maps , load_places } from './utils'
@@ -10,9 +9,18 @@ class App extends Component {
     let promisePlaces = load_places();
 
     Promise.all([
-      [promiseGM, promisePlaces]
-    ]).then(values => {
-      console.log(values);
+      promiseGM,
+      promisePlaces
+    ])
+    .then(results => {
+
+    let google = results[0];
+    let venues = results[1].response.venues;
+    this.google = google;
+    this.markers =[];
+
+console.log(venues);
+console.log(google);
     })
 
   }
