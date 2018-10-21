@@ -19,6 +19,7 @@ class App extends Component {
     this.google = google;
     this.markers =[];
 
+
     var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -26,11 +27,7 @@ class App extends Component {
     center: myLatLng
   });
 
-  /*let infoContent = {
-    Name:
-    Address:
-    picture:
-  }*/
+
 
   var infowindow = new google.maps.InfoWindow({
     content: "Hello world"
@@ -40,13 +37,24 @@ venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
     map: map,
+    animation: google.maps.Animation.DROP,
     title: markers.name,
     id: markers.id
   });
   marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
+
+    this.markers.push(markers);
+    console.log(this.markers);
+    /*let infoContent = {
+      Name: markers.name
+      Address:
+      picture:
+    }
+    */
 })
+
 
 
 

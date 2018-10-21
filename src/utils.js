@@ -40,3 +40,14 @@ export function load_places() {
   let apiURL = "https://api.foursquare.com/v2/venues/search?ll=35.780400,-78.639100&intent=browse&radius=10000&query=brewery&client_id=MJ5O3Y24ZSBNLGHJKUDKCYKXYCBGLZZKRZHEYXGHLRS1BNC3&client_secret=T3EHZUG0FSQZP2555JAOZBXLXEQC43544OUMILBH41051KBO&v=20181007";
 return fetch(apiURL).then(resp => resp.json());
 }
+
+export function load_details(VENUE_ID) {
+  let apiURL = "https://api.foursquare.com/v2/venues/`${VENUE_ID}`?&client_id=MJ5O3Y24ZSBNLGHJKUDKCYKXYCBGLZZKRZHEYXGHLRS1BNC3&client_secret=T3EHZUG0FSQZP2555JAOZBXLXEQC43544OUMILBH41051KBO&v=20181007"
+  return fetch(apiURL).then(resp => resp.json());
+}
+
+export function load_photos(VENUE_ID) {
+  let apiURL = "`https://api.foursquare.com/v2/venues/`${VENUE_ID}`?&client_id=MJ5O3Y24ZSBNLGHJKUDKCYKXYCBGLZZKRZHEYXGHLRS1BNC3&client_secret=T3EHZUG0FSQZP2555JAOZBXLXEQC43544OUMILBH41051KBO&v=20181007"
+  return fetch(apiURL).then(resp => resp.json());
+
+}
