@@ -4,7 +4,17 @@ import './App.css';
 import { load_google_maps , load_places } from './utils'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      query: ''
+    }
+  }
+
   componentDidMount() {
+
+
+
     let promiseGM = load_google_maps();
     let promisePlaces = load_places();
 
@@ -92,18 +102,30 @@ venues.forEach(markers => {
 
 
 
+
+
+
 console.log(venues);
 console.log(google);
     })
 
   }
 
+
+  filterMarkers(query) {
+  console.log(query);
+  }
+
   render() {
     return (
       <div>
       <div id="map">
-      <div id="sidebar">
+
       </div>
+      <div id="sidebar">
+
+        <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value)} } />
+    
       </div>
 
 
