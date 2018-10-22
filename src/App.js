@@ -46,22 +46,38 @@ venues.forEach(markers => {
         } else {
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
+        setTimeout(() => { marker.setAnimation(null); }, 1000);
       }
   );
 
+
+
+
+
+
   marker.addListener('click', () => {
-    window.setTimeout(function() {
+
+    // 1 seconds after the center of the map has changed, pan back to the
+    // marker.
+    window.setTimeout( () => {
     map.panTo(marker.position);
-  }, 3000)
+  }, 1000)
 
 
       this.map.setZoom(15);
       this.map.setCenter(markers.position);
       infowindow.setContent(markers.name);
       infowindow.open(map, marker);
+
     }
 
   );
+
+
+
+
+
+
 
     this.markers.push(markers);
     console.log(this.markers);
@@ -84,7 +100,13 @@ console.log(google);
 
   render() {
     return (
+      <div>
       <div id="map">
+      <div id="sidebar">
+      </div>
+      </div>
+
+
 
       </div>
     );
