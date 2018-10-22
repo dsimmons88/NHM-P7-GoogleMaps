@@ -26,24 +26,42 @@ class App extends Component {
     zoom: 12,
     center: myLatLng
   });
+this.map = map;
 
 
-
-  var infowindow = new google.maps.InfoWindow({
-    content: "Hello world"
-  });
+  var infowindow = new google.maps.InfoWindow();
 
 venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
-    map: map,
+    map: this.map,
     animation: google.maps.Animation.DROP,
     title: markers.name,
     id: markers.id
   });
-  marker.addListener('click', function() {
+  google.maps.event.addListener(marker, 'mouseover', () =>{
+
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+  );
+
+  marker.addListener('click', () => {
+    window.setTimeout(function() {
+    map.panTo(marker.position);
+  }, 3000)
+
+
+      this.map.setZoom(15);
+      this.map.setCenter(markers.position);
+      infowindow.setContent(markers.name);
       infowindow.open(map, marker);
-    });
+    }
+
+  );
 
     this.markers.push(markers);
     console.log(this.markers);
