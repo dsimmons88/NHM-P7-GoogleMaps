@@ -122,10 +122,7 @@ console.log(google);
       <div id="map" />
 
 
-      <div id="sidebar" />
-
-        <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value)} } />
-
+    
 
 
 
