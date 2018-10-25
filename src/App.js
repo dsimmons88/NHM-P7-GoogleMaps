@@ -27,7 +27,7 @@ class App extends Component {
     let google = results[0];
     let venues = results[1].response.venues;
     this.google = google;
-    this.markers =[];
+    let pins = [];
 
 
     var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
@@ -36,7 +36,7 @@ class App extends Component {
     zoom: 12,
     center: myLatLng
   });
-this.map = map;
+
 
 
   var infowindow = new google.maps.InfoWindow();
@@ -44,7 +44,7 @@ this.map = map;
 venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
-    map: this.map,
+    map: map,
     animation: google.maps.Animation.DROP,
     title: markers.name,
     id: markers.id
@@ -74,8 +74,8 @@ venues.forEach(markers => {
   }, 1000)
 
 
-      this.map.setZoom(15);
-      this.map.setCenter(markers.position);
+      map.setZoom(15);
+      map.setCenter(markers.position);
       infowindow.setContent(markers.name);
       infowindow.open(map, marker);
 
@@ -89,8 +89,8 @@ venues.forEach(markers => {
 
 
 
-    this.markers.push(markers);
-    console.log(this.markers);
+    pins.push(markers);
+    console.log(pins);
     /*let infoContent = {
       Name: markers.name
       Address:
@@ -119,14 +119,14 @@ console.log(google);
   render() {
     return (
       <div>
-      <div id="map">
+      <div id="map" />
 
-      </div>
-      <div id="sidebar">
+
+      <div id="sidebar" />
 
         <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value)} } />
-    
-      </div>
+
+
 
 
 
