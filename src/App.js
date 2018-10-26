@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import MapSidebar from './Sidebar'
 import { load_google_maps , load_places } from './utils'
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      query: ''
-    }
-  }
+
 
   componentDidMount() {
 
@@ -83,12 +79,6 @@ venues.forEach(markers => {
 
   );
 
-
-
-
-
-
-
     pins.push(markers);
     console.log(pins);
     /*let infoContent = {
@@ -98,11 +88,6 @@ venues.forEach(markers => {
     }
     */
 })
-
-
-
-
-
 
 
 console.log(venues);
@@ -119,10 +104,10 @@ console.log(google);
   render() {
     return (
       <div>
+
       <div id="map" />
 
-
-    
+              <MapSidebar />
 
 
 

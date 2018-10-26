@@ -2,28 +2,39 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { load_google_maps , load_places } from './utils'
+import App from './App';
 
 
-class sidebar extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      query: ''
+class MapSidebar extends Component {
 
+    state = {
+      query: '',
+      pins: this.props.pins
     }
-  }
-render(
-  return {
+
+filterMarkers(query) {
+  this.pins.forEach(markers => {
+    console.log(markers);
+  })
+}
+
+render () {
+  return (
     <div>
-    <div id="sidebar" />
+    <div id="sidebar">
 
       <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value)} } />
       </div>
-  };
-)
+    </div>
+
+);
+}
+
 
 
 
 
 
 }
+
+export default MapSidebar;
