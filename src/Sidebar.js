@@ -9,13 +9,13 @@ class MapSidebar extends Component {
 
     state = {
       query: '',
-      pins: this.props.pins
+
     }
 
 filterMarkers(query) {
-  this.pins.forEach(markers => {
+  this.props.pins.forEach(markers => {
     console.log(markers);
-  })
+  });
 }
 
 render () {

@@ -6,8 +6,17 @@ import { load_google_maps , load_places } from './utils'
 
 class App extends Component {
 
+  state = {
+    map: null,
+    pins: "",
+    infoWindow: null
 
-  componentDidMount() {
+  }
+
+
+
+
+  componentWillMount() {
 
 
 
@@ -79,7 +88,8 @@ venues.forEach(markers => {
 
   );
 
-    pins.push(markers);
+    pins.push(marker);
+    this.setState({pins:pins});
     console.log(pins);
     /*let infoContent = {
       Name: markers.name
