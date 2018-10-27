@@ -61,6 +61,7 @@ venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
     map: map,
+    venues: markers,
     name: markers.name,
     animation: google.maps.Animation.DROP,
     title: markers.name,
