@@ -6,17 +6,27 @@ import { load_google_maps , load_places } from './utils'
 
 class App extends Component {
 
-  state = {
-    map: null,
-    pins: "",
-    infoWindow: null
 
+
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query : "",
+      pins: ""
+
+
+
+    }
   }
 
 
 
 
-  componentWillMount() {
+
+  componentDidMount() {
+
 
 
 
@@ -32,7 +42,8 @@ class App extends Component {
     let google = results[0];
     let venues = results[1].response.venues;
     this.google = google;
-    let pins = [];
+
+
 
 
     var myLatLng = {lat: venues[0].location.lat, lng: venues[0].location.lng };
@@ -42,7 +53,7 @@ class App extends Component {
     center: myLatLng
   });
 
-
+  const pins = [];
 
   var infowindow = new google.maps.InfoWindow();
 
@@ -50,10 +61,21 @@ venues.forEach(markers => {
   var marker = new google.maps.Marker({
     position:{lat: markers.location.lat, lng: markers.location.lng},
     map: map,
+    name: markers.name,
     animation: google.maps.Animation.DROP,
     title: markers.name,
     id: markers.id
   });
+
+  pins.push(marker);
+
+  this.setState({
+        pins: pins
+      });
+  console.log(pins);
+
+
+
   google.maps.event.addListener(marker, 'mouseover', () =>{
 
         if (marker.getAnimation() !== null) {
@@ -72,15 +94,16 @@ venues.forEach(markers => {
 
   marker.addListener('click', () => {
 
-    // 1 seconds after the center of the map has changed, pan back to the
-    // marker.
-    window.setTimeout( () => {
-    map.panTo(marker.position);
-  }, 1000)
+
 
 
       map.setZoom(15);
-      map.setCenter(markers.position);
+      map.setCenter(marker.getPosition());
+      // 1 seconds after the center of the map has changed, pan back to the
+      // marker.
+      window.setTimeout( () => {
+      map.panTo(marker.position);
+    }, 1000)
       infowindow.setContent(markers.name);
       infowindow.open(map, marker);
 
@@ -88,9 +111,8 @@ venues.forEach(markers => {
 
   );
 
-    pins.push(marker);
-    this.setState({pins:pins});
-    console.log(pins);
+
+
     /*let infoContent = {
       Name: markers.name
       Address:
@@ -107,9 +129,10 @@ console.log(google);
   }
 
 
-  filterMarkers(query) {
-  console.log(query);
-  }
+
+
+
+
 
   render() {
     return (
@@ -117,7 +140,7 @@ console.log(google);
 
       <div id="map" />
 
-              <MapSidebar />
+      <MapSidebar pins={this.state.pins} />
 
 
 
