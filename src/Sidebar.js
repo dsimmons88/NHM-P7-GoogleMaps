@@ -18,7 +18,21 @@ constructor(props){
 }
 
 
+venueItemClick = (marker) => {
+  let markers = this.props.pins.filter(m => m.id === marker.id)
+  this.props.map.setZoom(15);
+  this.props.map.setCenter(marker.getPosition());
+  // 1 seconds after the center of the map has changed, pan back to the
+  // marker.
+  window.setTimeout( () => {
+  this.props.map.panTo(marker.position);
+}, 1000)
 
+// sets the content for the infowindow
+  this.props.infowindow.setContent(marker.name);
+  // if you click the marker the infowindow will open
+  this.props.infowindow.open(this.props.map, marker);
+}
 
 
 // a function to filter the markers to match the query
@@ -48,8 +62,6 @@ constructor(props){
 
 
 
-
-
 render () {
   return (
     <div>
@@ -57,12 +69,13 @@ render () {
     <div id="sidebar">
 
       <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value) }} />
+
       <br/>
-      // this creates the search result in the filter list
+
       {
-        // this checks the state of searchMarkers and outputs the results in the filter list
+
         this.state.searchMarkers && this.state.searchMarkers.length > 0 && this.state.searchMarkers.map((marker, index) => (
-          <div key={index} className="venue-item">
+          <div key={index} className="venue-item" onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
           </div>
         ))
