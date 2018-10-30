@@ -17,7 +17,8 @@ class App extends Component {
       pins: "",
       venues: "",
       map: null,
-      infowindow: null
+      infowindow: null,
+      google: ""
 
 
     }
@@ -128,10 +129,11 @@ venues.forEach(markers => {
     }
     */
 })
-// this sets the state of the venues
+// this sets the state of the venues, map InfoWindow
 this.setState({ venues })
 this.setState({map: map})
 this.setState({infowindow: infowindow})
+this.setState({google: google})
 console.log(venues);
 console.log(google);
     })
@@ -151,7 +153,7 @@ console.log(google);
       <div id="map" />
 
       <MapSidebar pins={this.state.pins} venues={this.state.venues}
-      map={this.state.map} infowindow={this.state.infowindow}/>
+      map={this.state.map} infowindow={this.state.infowindow} google={this.state.google}/>
 
 
 

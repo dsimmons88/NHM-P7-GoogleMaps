@@ -17,6 +17,8 @@ constructor(props){
 
 }
 
+
+
 //  this is a the function for the onClick for the list item
 venueItemClick = (marker) => {
   let markers = this.props.pins.filter(m => m.id === marker.id)
@@ -28,17 +30,27 @@ venueItemClick = (marker) => {
   this.props.map.panTo(marker.position);
 }, 1000)
 
+
 // sets the content for the infowindow
   this.props.infowindow.setContent(marker.name);
   // if you click the marker the infowindow will open
   this.props.infowindow.open(this.props.map, marker);
+// set animation for the click for item list
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+  }
+  setTimeout(() => { marker.setAnimation(null); }, 1000);
 }
+
+
 
 
 // a function to filter the markers to match the query
   filterMarkers = (query) => {
 // this is for the filter list.
-    let searchMarkers = [];
+const searchMarkers = [];
 // this sort the markers to match the query
       this.props.pins.forEach(marker => {
       if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
@@ -48,6 +60,7 @@ venueItemClick = (marker) => {
 
       } else {
       marker.setVisible(false)
+
     }
 
 
