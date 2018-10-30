@@ -17,7 +17,7 @@ constructor(props){
 
 }
 
-
+//  this is a the function for the onClick for the list item
 venueItemClick = (marker) => {
   let markers = this.props.pins.filter(m => m.id === marker.id)
   this.props.map.setZoom(15);
@@ -36,7 +36,7 @@ venueItemClick = (marker) => {
 
 
 // a function to filter the markers to match the query
-  filterMarkers(query) {
+  filterMarkers = (query) => {
 // this is for the filter list.
     let searchMarkers = [];
 // this sort the markers to match the query
