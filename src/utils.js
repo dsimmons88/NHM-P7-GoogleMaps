@@ -1,4 +1,4 @@
-
+// Thanks to Ryan Waite for this. This is a function for init to google maps
 export function load_google_maps() {
   return new Promise(function(resolve, reject) {
     // define the global callback that will run when google maps is loaded
@@ -17,7 +17,7 @@ export function load_google_maps() {
   });
 }
 
-
+// a function for getting the foursquare API info for venues
 export function load_places() {
   /*let urlPrams{
      near: "Raleigh,NC"
