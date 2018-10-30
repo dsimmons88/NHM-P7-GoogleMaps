@@ -21,11 +21,11 @@ constructor(props){
 
 
 
-
+// a function to filter the markers to match the query
   filterMarkers(query) {
-
+// this is for the filter list.
     let searchMarkers = [];
-
+// this sort the markers to match the query
       this.props.pins.forEach(marker => {
       if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
       {marker.setVisible(true);
@@ -39,9 +39,9 @@ constructor(props){
 
 
     });
-
+// to update the query state
     this.setState({ query });
-
+// to update the filter list state
   this.setState({searchMarkers: searchMarkers})
   //  console.log(filterMarkers);
   }
@@ -58,7 +58,9 @@ render () {
 
       <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value) }} />
       <br/>
+      // this creates the search result in the filter list
       {
+        // this checks the state of searchMarkers and outputs the results in the filter list
         this.state.searchMarkers && this.state.searchMarkers.length > 0 && this.state.searchMarkers.map((marker, index) => (
           <div key={index} className="venue-item">
           {marker.name}
