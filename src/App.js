@@ -14,8 +14,8 @@ class App extends Component {
 
     this.state = {
       query : "",
-      pins: ""
-
+      pins: "",
+      venues: ""
 
 
     }
@@ -122,6 +122,7 @@ venues.forEach(markers => {
     */
 })
 
+this.setState({ venues })
 
 console.log(venues);
 console.log(google);
@@ -141,7 +142,7 @@ console.log(google);
 
       <div id="map" />
 
-      <MapSidebar pins={this.state.pins} />
+      <MapSidebar pins={this.state.pins} venues={this.state.venues}/>
 
 
 
