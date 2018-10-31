@@ -70,7 +70,9 @@ venues.forEach(markers => {
     name: markers.name,
     animation: google.maps.Animation.DROP,
     title: markers.name,
+    address: markers.location.address,
     id: markers.id
+
   });
 // this moves the markers to the pins array
   pins.push(marker);

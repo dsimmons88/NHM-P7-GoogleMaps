@@ -10,13 +10,16 @@ constructor(props){
   super(props);
   this.state = {
     query: "",
-    searchMarkers:""
+    searchMarkers: this.props.venues
   }
 
 
 
 }
 
+state = {
+filterMarkers: this.searchMarkers
+}
 
 
 //  this is a the function for the onClick for the list item
@@ -49,13 +52,18 @@ venueItemClick = (marker) => {
 
 // a function to filter the markers to match the query
   filterMarkers = (query) => {
+
+    if(this.state.query === ""){
+    this.setState({filterMarkers: this.props.venes})
+  }
+
 // this is for the filter list.
-const searchMarkers = [];
+let l = this.props.pins.filter(marker => marker.name.toLowerCase().includes(query.toLowerCase()));
 // this sort the markers to match the query
       this.props.pins.forEach(marker => {
       if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
       {marker.setVisible(true);
-     searchMarkers.push(marker);
+     //searchMarkers.push(marker);
 
 
       } else {
@@ -69,7 +77,7 @@ const searchMarkers = [];
 // to update the query state
     this.setState({ query });
 // to update the filter list state
-  this.setState({searchMarkers: searchMarkers})
+  this.setState({filterMarkers: l})
   //  console.log(filterMarkers);
   }
 
@@ -87,9 +95,11 @@ render () {
 
       {
 
-        this.state.searchMarkers && this.state.searchMarkers.length > 0 && this.state.searchMarkers.map((marker, index) => (
+        this.state.filterMarkers && this.state.filterMarkers.length > 0 && this.state.filterMarkers.map((marker, index) => (
           <div key={index} className="venue-item" onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
+          <br/>
+          {marker.address}
           </div>
         ))
       }
