@@ -121,7 +121,7 @@ render () {
           <div key={index} className="venue-item"
           onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
-          <br/>
+          
           {marker.address}
           </div>
         ))
