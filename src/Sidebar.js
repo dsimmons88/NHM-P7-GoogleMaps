@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { load_google_maps , load_places } from './utils'
-import App from './App';
+
+
 
 
 class MapSidebar extends Component {
@@ -10,14 +10,8 @@ class MapSidebar extends Component {
 
 venueItemClick = venue => {
   console.log(venue);
-  let markers = this.props.pins.filter(m => m.id === venue.id);
 
-//  this.props.map.setCenter(venue.location.lat, venue.location.lng);
-  // 1 seconds after the center of the map has changed, pan back to the
-  // marker.
-  //window.setTimeout(() => {
-  //  this.props.map.panTo(venue.location.lat, venue.location.lng);
-//  }, 1000);
+
 
   // sets the content for the infowindow
   this.props.infowindow.setContent(venue.name);
@@ -121,7 +115,7 @@ render () {
           <div key={index} className="venue-item"
           onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
-          
+
           {marker.address}
           </div>
         ))

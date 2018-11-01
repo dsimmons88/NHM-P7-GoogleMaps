@@ -124,7 +124,7 @@ venues.forEach(venue => {
   );
 
 })
-// this sets the state of the venues, map InfoWindow
+// this sets the state of the venues, map InfoWindow,filterMarkers
 this.setState({ venues });
 this.setState({map: map});
 this.setState({infowindow: infowindow,
