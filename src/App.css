@@ -37,7 +37,7 @@
   top:0; left:0; bottom:0; width:300px; }
 
 #map {
-  width: 100vw;
+  max-width: 100%;
 }
 
 .venue-item {
@@ -45,3 +45,17 @@
   margin-bottom: 5px;
   border: 1px solid blue
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    #sidebar {
+          width: 175px;
+          max-height: 100%;
+    }
+    .venue-item {
+         overflow-y: scroll;
+         overflow-x: hidden;
+
+     }
+ }
