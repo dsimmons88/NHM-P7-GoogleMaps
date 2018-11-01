@@ -18,8 +18,9 @@ class App extends Component {
       venues: "",
       map: null,
       infowindow: null,
-      google: ""
-
+      google: "",
+      filterMarkers: "",
+      searchedVenues: []
 
     }
   }
@@ -62,16 +63,16 @@ class App extends Component {
 // sets the infowindow to a varible
   var infowindow = new google.maps.InfoWindow();
 // I used the array for the venues to create markers for the google maps
-venues.forEach(markers => {
+venues.forEach(venue => {
   var marker = new google.maps.Marker({
-    position:{lat: markers.location.lat, lng: markers.location.lng},
+    position:{lat: venue.location.lat, lng: venue.location.lng},
     map: map,
-    venues: markers,
-    name: markers.name,
+    venues: venue,
+    name: venue.name,
     animation: google.maps.Animation.DROP,
-    title: markers.name,
-    address: markers.location.address,
-    id: markers.id
+    title: venue.name,
+    address: venue.location.address,
+    id: venue.id
 
   });
 // this moves the markers to the pins array
@@ -82,7 +83,7 @@ venues.forEach(markers => {
       });
   console.log(pins);
 
-this.setState({filterMarkers: venues})
+
 // When you mouseover an marker, it will bounce
   google.maps.event.addListener(marker, 'mouseover', () =>{
 
@@ -105,7 +106,7 @@ this.setState({filterMarkers: venues})
 
 
 
-      map.setZoom(15);
+
       map.setCenter(marker.getPosition());
       // 1 seconds after the center of the map has changed, pan back to the
       // marker.
@@ -114,7 +115,7 @@ this.setState({filterMarkers: venues})
     }, 1000)
 
     // sets the content for the infowindow
-      infowindow.setContent(markers.name);
+      infowindow.setContent(venue.name);
       // if you click the marker the infowindow will open
       infowindow.open(map, marker);
 
@@ -122,20 +123,15 @@ this.setState({filterMarkers: venues})
 
   );
 
-
-
-    /*let infoContent = {
-      Name: markers.name
-      Address:
-      picture:
-    }
-    */
 })
 // this sets the state of the venues, map InfoWindow
-this.setState({ venues })
-this.setState({map: map})
-this.setState({infowindow: infowindow})
-this.setState({google: google})
+this.setState({ venues });
+this.setState({map: map});
+this.setState({infowindow: infowindow,
+              filterMarkers: venues
+            });
+this.setState({google: google});
+
 console.log(venues);
 console.log(google);
     })
@@ -145,12 +141,12 @@ console.log(google);
 
 
   // a function to filter the markers to match the query
-    filterMarkers = (query) => {
+    filterMarkers = query => {
 
 
 
   // this is for the filter list.
-  let l = this.state.venues.filter(markers => markers.name.toLowerCase().includes(query.toLowerCase()));
+  let l = this.state.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
   // this sort the markers to match the query
         this.state.pins.forEach(marker => {
         if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
@@ -167,9 +163,9 @@ console.log(google);
 
       });
   // to update the query state
-    //  this.setState({ query });
+  //    this.setState({ query });
   // to update the filter list state
-    this.setState({filterMarkers: l, query})
+    this.setState({filterMarkers: l})
     //  console.log(filterMarkers);
     }
 
@@ -183,8 +179,14 @@ console.log(google);
 
       <div id="map" />
 
-      <MapSidebar filterMarkers={this.state.filterMarkers} pins={this.state.pins} venues={this.state.venues}
-      map={this.state.map} infowindow={this.state.infowindow} google={this.state.google}/>
+      <MapSidebar
+      searchedVenues={this.state.filterMarkers}
+      filterMarkers={this.filterMarkers}
+      pins={this.state.pins}
+      venues={this.state.venues}
+      map={this.state.map}
+      infowindow={this.state.infowindow}
+      google={this.state.google}/>
 
 
 

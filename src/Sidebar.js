@@ -6,45 +6,66 @@ import App from './App';
 
 
 class MapSidebar extends Component {
-constructor(props){
-  super(props);
-  this.state = {
-    query: "",
-    searchMarkers: this.props.venues
-  }
+
+
+venueItemClick = venue => {
+  console.log(venue);
+  let markers = this.props.pins.filter(m => m.id === venue.id);
+
+//  this.props.map.setCenter(venue.location.lat, venue.location.lng);
+  // 1 seconds after the center of the map has changed, pan back to the
+  // marker.
+  //window.setTimeout(() => {
+  //  this.props.map.panTo(venue.location.lat, venue.location.lng);
+//  }, 1000);
+
+  // sets the content for the infowindow
+  this.props.infowindow.setContent(venue.name);
+  // if you click the marker the infowindow will open
+  this.props.pins.forEach(pin => {
+    if (pin.id === venue.id) {
+      this.props.infowindow.open(this.props.map, pin);
+      // set animation for the click for item list
+      if (pin.getAnimation() !== null) {
+        pin.setAnimation(null);
+      } else {
+        pin.setAnimation(this.props.google.maps.Animation.BOUNCE);
+      }
+      setTimeout(() => {
+        pin.setAnimation(null);
+      }, 1000);
+    }
+  });
+};
 
 
 
-}
 
-
-
-
+/*
 //  this is a the function for the onClick for the list item
-venueItemClick = (marker) => {
+venueItemClick = venues => {
   let markers = this.props.pins.filter(m => m.id === marker.id)
-  this.props.map.setZoom(15);
-  this.props.map.setCenter(marker.getPosition());
+  this.state.map.setZoom(15);
+  this.state.map.setCenter(marker.getPosition());
   // 1 seconds after the center of the map has changed, pan back to the
   // marker.
   window.setTimeout( () => {
-  this.props.map.panTo(marker.position);
+  this.state.map.panTo(marker.position);
 }, 1000)
 
 
 // sets the content for the infowindow
-  this.props.infowindow.setContent(marker.name);
+  this.state.infowindow.setContent(marker.name);
   // if you click the marker the infowindow will open
-  this.props.infowindow.open(this.props.map, marker);
+  this.state.infowindow.open(this.props.map, marker);
 // set animation for the click for item list
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
   } else {
-    marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+    marker.setAnimation(this.state.google.maps.Animation.BOUNCE);
   }
   setTimeout(() => { marker.setAnimation(null); }, 1000);
 }
-
 
 
 /*
@@ -87,14 +108,18 @@ render () {
 
     <div id="sidebar">
 
-      <input type="text" value={this.props.query} onChange={ (e) => {this.props.filterMarkers(e.target.value) }} />
+      <input type="text" value={this.props.query}
+      onChange={ (e) => {this.props.filterMarkers(e.target.value) }} />
 
       <br/>
 
       {
 
-        this.props.filterMarkers && this.props.filterMarkers.length > 0 && this.props.filterMarkers.map((marker, index) => (
-          <div key={index} className="venue-item" onClick={() => {this.venueItemClick(marker)}}>
+        this.props.searchedVenues &&
+        this.props.searchedVenues.length > 0 &&
+        this.props.searchedVenues.map((marker, index) => (
+          <div key={index} className="venue-item"
+          onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
           <br/>
           {marker.address}
