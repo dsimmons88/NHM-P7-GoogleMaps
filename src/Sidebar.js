@@ -17,9 +17,7 @@ constructor(props){
 
 }
 
-state = {
-filterMarkers: this.searchMarkers
-}
+
 
 
 //  this is a the function for the onClick for the list item
@@ -49,7 +47,7 @@ venueItemClick = (marker) => {
 
 
 
-
+/*
 // a function to filter the markers to match the query
   filterMarkers = (query) => {
 
@@ -81,7 +79,7 @@ let l = this.props.pins.filter(marker => marker.name.toLowerCase().includes(quer
   //  console.log(filterMarkers);
   }
 
-
+*/
 
 render () {
   return (
@@ -89,13 +87,13 @@ render () {
 
     <div id="sidebar">
 
-      <input type="text" value={this.state.query} onChange={ (e) => {this.filterMarkers(e.target.value) }} />
+      <input type="text" value={this.props.query} onChange={ (e) => {this.props.filterMarkers(e.target.value) }} />
 
       <br/>
 
       {
 
-        this.state.filterMarkers && this.state.filterMarkers.length > 0 && this.state.filterMarkers.map((marker, index) => (
+        this.props.filterMarkers && this.props.filterMarkers.length > 0 && this.props.filterMarkers.map((marker, index) => (
           <div key={index} className="venue-item" onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
           <br/>

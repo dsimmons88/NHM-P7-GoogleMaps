@@ -82,7 +82,7 @@ venues.forEach(markers => {
       });
   console.log(pins);
 
-
+this.setState({filterMarkers: venues})
 // When you mouseover an marker, it will bounce
   google.maps.event.addListener(marker, 'mouseover', () =>{
 
@@ -144,6 +144,35 @@ console.log(google);
 
 
 
+  // a function to filter the markers to match the query
+    filterMarkers = (query) => {
+
+
+
+  // this is for the filter list.
+  let l = this.state.venues.filter(markers => markers.name.toLowerCase().includes(query.toLowerCase()));
+  // this sort the markers to match the query
+        this.state.pins.forEach(marker => {
+        if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
+        {marker.setVisible(true);
+       //searchMarkers.push(marker);
+
+
+        } else {
+        marker.setVisible(false)
+
+      }
+
+
+
+      });
+  // to update the query state
+    //  this.setState({ query });
+  // to update the filter list state
+    this.setState({filterMarkers: l, query})
+    //  console.log(filterMarkers);
+    }
+
 
 
 
@@ -154,7 +183,7 @@ console.log(google);
 
       <div id="map" />
 
-      <MapSidebar pins={this.state.pins} venues={this.state.venues}
+      <MapSidebar filterMarkers={this.state.filterMarkers} pins={this.state.pins} venues={this.state.venues}
       map={this.state.map} infowindow={this.state.infowindow} google={this.state.google}/>
 
 
