@@ -41,7 +41,12 @@ render () {
 
     <div id="sidebar">
 
-      <input type="text" value={this.props.query}
+      <input
+      aria-labelledby="searchbar-label"
+      aria-required="false"
+      tabindex="1"
+      type="text"
+      value={this.props.query}
       onChange={ (e) => {this.props.filterMarkers(e.target.value) }} />
 
       <br/>
@@ -51,11 +56,15 @@ render () {
         this.props.searchedVenues &&
         this.props.searchedVenues.length > 0 &&
         this.props.searchedVenues.map((marker, index) => (
-          <div key={index} className="venue-item"
+          <div
+        
+          tabindex = "2"
+          key={index}
+          className="venue-item"
           onClick={() => {this.venueItemClick(marker)}}>
           {marker.name}
 
-          {marker.address}
+
           </div>
         ))
       }

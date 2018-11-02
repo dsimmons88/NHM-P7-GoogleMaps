@@ -31,7 +31,9 @@ class App extends Component {
 
   componentDidMount() {
 
-
+window.gm_authFailure = () => {
+  alert("googlemaps has not loaded")
+}
 
 // var for the google maps fucntion. This will create the map
     let promiseGM = load_google_maps();
@@ -42,7 +44,9 @@ class App extends Component {
     Promise.all([
       promiseGM,
       promisePlaces
-    ])
+    ],function(err){
+        console.log("Google map");
+    })
 // After the promise we get the results for the google maps and venues
     .then(results => {
 
@@ -57,7 +61,11 @@ class App extends Component {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: myLatLng
-  });
+  },(err) => {
+        console.log("Google maps info did not load");
+    });
+
+  //function gm_authFailure() { /* Code */ };
 // var for the markers
   const pins = [];
 // sets the infowindow to a varible
@@ -178,6 +186,10 @@ console.log(google);
       <div>
 
       <div id="map" />
+      <label
+      role="application"
+      aria-label="Map of Breweries around the Raleigh NC area"
+      />
 
       <MapSidebar
       searchedVenues={this.state.filterMarkers}
