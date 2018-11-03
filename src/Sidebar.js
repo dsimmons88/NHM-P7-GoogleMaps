@@ -6,7 +6,17 @@ import './App.css';
 
 
 class MapSidebar extends Component {
+  constructor() {
+         super();
+         this.state = {
+           menuVisible: false
+         };
 
+     }
+
+     handleClick= () => {
+         this.setState({menuVisible: !this.state.menuVisible});
+     }
 
 venueItemClick = venue => {
   console.log(venue);
@@ -40,7 +50,13 @@ render () {
     <div>
 
     <div id="sidebar">
-
+    <div>
+    <div class="container" >
+      <div class="bar1 change"></div>
+      <div class="bar2 change"></div>
+      <div class="bar3 change"></div>
+    </div>
+    </div>
       <input
       aria-labelledby="searchbar-label"
       aria-required="false"
@@ -57,7 +73,7 @@ render () {
         this.props.searchedVenues.length > 0 &&
         this.props.searchedVenues.map((marker, index) => (
           <div
-        
+
           tabIndex = "2"
           key={index}
           className="venue-item"

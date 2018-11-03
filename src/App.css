@@ -35,16 +35,16 @@
   flex-direction: column;
   margin-top: 65px;
  }
-.hidden {
-  display: none;
-}
+
 
 #map {
   max-width: 100%;
     height: 88vh;
       position: fixed;
 }
-
+.hidden {
+  display: none;
+}
 .venue-item {
   padding: 5px;
   margin-bottom: 5px;
@@ -66,8 +66,7 @@ justify-content: center;
 }
 
 .container {
-    position: relative;
-    top: -55px;
+
     text-align: left;
     display: inline-block;
     cursor: pointer;
@@ -76,7 +75,7 @@ justify-content: center;
 .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-    background-color: #fff;
+    background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
 }
