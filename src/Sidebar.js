@@ -44,7 +44,7 @@ render () {
       <input
       aria-labelledby="searchbar-label"
       aria-required="false"
-      tabindex="1"
+      tabIndex="1"
       type="text"
       value={this.props.query}
       onChange={ (e) => {this.props.filterMarkers(e.target.value) }} />
@@ -58,7 +58,7 @@ render () {
         this.props.searchedVenues.map((marker, index) => (
           <div
         
-          tabindex = "2"
+          tabIndex = "2"
           key={index}
           className="venue-item"
           onClick={() => {this.venueItemClick(marker)}}>

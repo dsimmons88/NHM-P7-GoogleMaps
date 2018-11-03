@@ -184,6 +184,7 @@ console.log(google);
   render() {
     return (
       <div>
+      <header className= "App-header" />
 
       <div id="map" />
       <label
@@ -201,7 +202,7 @@ console.log(google);
       google={this.state.google}/>
 
 
-
+      <footer className="App-footer" />
 
       </div>
     );
