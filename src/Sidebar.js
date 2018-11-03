@@ -51,7 +51,7 @@ render () {
 
     <div id="sidebar">
     <div>
-    <div class="container" >
+    <div class="container" onClick={this.handleClick} >
       <div class="bar1 change"></div>
       <div class="bar2 change"></div>
       <div class="bar3 change"></div>
