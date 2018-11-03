@@ -3,6 +3,8 @@ import './App.css';
 
 import MapSidebar from './Sidebar'
 import { load_google_maps , load_places } from './utils'
+import Header from './Header'
+import Footer from './Footer'
 
 class App extends Component {
 
@@ -184,7 +186,7 @@ console.log(google);
   render() {
     return (
       <div>
-      <header className= "App-header" />
+      <Header className= "App-header" />
 
       <div id="map" />
       <label
@@ -202,7 +204,8 @@ console.log(google);
       google={this.state.google}/>
 
 
-      <footer className="App-footer" />
+      <Footer className="App-footer" text="Google Maps and Foursquare API 2018" title="Google Maps and Foursquare API 2018" />
+
 
       </div>
     );
