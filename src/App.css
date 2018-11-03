@@ -52,6 +52,8 @@
 }
 
 .headerTitle {
+  position: relative;
+  top: -25px;
   margin-bottom: 5px;
 align-content: center;
 justify-content: center;
