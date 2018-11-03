@@ -16,6 +16,7 @@ class MapSidebar extends Component {
 
      handleClick= () => {
          this.setState({menuVisible: !this.state.menuVisible});
+
      }
 
 venueItemClick = venue => {
