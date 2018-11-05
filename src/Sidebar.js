@@ -6,18 +6,6 @@ import './App.css';
 
 
 class MapSidebar extends Component {
-  constructor() {
-         super();
-         this.state = {
-           menuVisible: false
-         };
-
-     }
-
-     handleClick= () => {
-         this.setState({menuVisible: !this.state.menuVisible});
-
-     }
 
 venueItemClick = venue => {
   console.log(venue);
@@ -50,14 +38,9 @@ render () {
   return (
     <div>
 
-    <div id="sidebar">
-    <div>
-    <div class="container" onClick={this.handleClick} >
-      <div class="bar1 change"></div>
-      <div class="bar2 change"></div>
-      <div class="bar3 change"></div>
-    </div>
-    </div>
+    <div id="sidebar" >
+
+
       <input
       aria-labelledby="searchbar-label"
       aria-required="false"
