@@ -31,7 +31,13 @@ venueItemClick = venue => {
   });
 };
 
+/*
+for the render() the input get the query and filters by the logic of the
+filterMarkers function. The venue items are created by comparing the length of
+searchedVenues then map based on the marker in the searchedVenues.
 
+
+*/
 
 
 render () {

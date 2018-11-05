@@ -1,4 +1,4 @@
-// Thanks to Ryan Waite for this. This is a function for init to google maps
+// Thanks to Ryan Waite for this method to init the map. This is a function for init to google maps
 export function load_google_maps() {
   return new Promise(function(resolve, reject) {
     // define the global callback that will run when google maps is loaded
