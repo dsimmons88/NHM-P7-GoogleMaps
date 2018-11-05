@@ -87,9 +87,11 @@ justify-content: center;
   @media only screen and (min-width: 350px) and (max-width: 650px) {
     #sidebar {
         width: 140px;
-        max-height: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;
+    
+        bottom: -50px;
+        position: fixed;
+        max-height: 100vh;
+
 
     }
     .headerTitle {
@@ -105,7 +107,9 @@ justify-content: center;
       position: relative;
       top: -20px;
     }
-
+#map {
+  .height: 100vh;
+}
     .venue-item {
       font-size: 10px;
     }
