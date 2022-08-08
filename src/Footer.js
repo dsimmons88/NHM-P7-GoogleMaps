@@ -5,8 +5,8 @@ export default class Footer extends Component{
   render(){
     return (
       <div className="App-footer">
-      {<p className="footerText">This map uses infomation from the FoursquareAPI.</p>}
-            </div>
+        {<p className="footerText">This map uses infomation from the FoursquareAPI.</p>}
+      </div>
 
     );
 

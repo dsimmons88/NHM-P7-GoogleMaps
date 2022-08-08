@@ -7,13 +7,8 @@ import Header from './Header'
 import Footer from './Footer'
 
 class App extends Component {
-
-
-
-
   constructor(props) {
     super();
-
     this.state = {
       query : "",
       pins: "",
@@ -23,20 +18,13 @@ class App extends Component {
       google: "",
       filterMarkers: "",
       searchedVenues: []
-
     }
   }
 
-
-
-
-
   componentDidMount() {
-
 window.gm_authFailure = () => {
   alert("googlemaps has not loaded")
 }
-
 // var for the google maps fucntion. This will create the map
     let promiseGM = load_google_maps();
 // car for the foursquare API venue function. This will get an locations json
@@ -105,34 +93,19 @@ venues.forEach(venue => {
         setTimeout(() => { marker.setAnimation(null); }, 1000);
       }
   );
-
-
-
-
-
-
   marker.addListener('click', () => {
-
-
-
-
-
       map.setCenter(marker.getPosition());
       // 1 seconds after the center of the map has changed, pan back to the
       // marker.
       window.setTimeout( () => {
       map.panTo(marker.position);
     }, 1000)
-
     // sets the content for the infowindow
       infowindow.setContent(venue.name);
       // if you click the marker the infowindow will open
       infowindow.open(map, marker);
-
     }
-
   );
-
 })
 // this sets the state of the venues, map InfoWindow,filterMarkers
 this.setState({ venues });
@@ -145,16 +118,9 @@ this.setState({google: google});
 console.log(venues);
 console.log(google);
     })
-
   }
-
-
-
   // a function to filter the markers to match the query
     filterMarkers = query => {
-
-
-
   // this is for the filter list.
   let l = this.state.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
   // this sort the markers to match the query
@@ -162,16 +128,10 @@ console.log(google);
         if (marker.name.toLowerCase().includes(query.toLowerCase()) === true )
         {marker.setVisible(true);
        //searchMarkers.push(marker);
-
-
         } else {
         marker.setVisible(false)
-
       }
-
-
-
-      });
+    });
   // to update the query state
   //    this.setState({ query });
   // to update the filter list state
@@ -179,21 +139,15 @@ console.log(google);
     //  console.log(filterMarkers);
     }
 
-
-
-
-
   render() {
     return (
       <div>
       <Header className= "App-header" />
-
       <div id="map" />
       <label
       role="application"
       aria-label="Map of Breweries around the Raleigh NC area"
       />
-
       <MapSidebar
       searchedVenues={this.state.filterMarkers}
       filterMarkers={this.filterMarkers}
@@ -202,11 +156,7 @@ console.log(google);
       map={this.state.map}
       infowindow={this.state.infowindow}
       google={this.state.google}/>
-
-
       <Footer className="App-footer" text="Google Maps and Foursquare API 2018" title="Google Maps and Foursquare API 2018" />
-
-
       </div>
     );
   }
