@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Header, Icon } from 'semantic-ui-react'
 
-export default class Header extends Component{
+export default class HeaderC extends Component{
 
     render() {
       return (
-        <div className="App-header">
-          <h3 className="headerTitle">Raleigh Breweries</h3>
+        <div>
+          <Header as="h2" block>
+            <Header.Content >
+            <Icon name='beer' />
+            Raleigh Breweries
+            </Header.Content>
+          </Header>
         </div>
       );
     }

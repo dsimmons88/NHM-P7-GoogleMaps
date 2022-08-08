@@ -3,8 +3,18 @@ import './App.css';
 
 import MapSidebar from './Sidebar'
 import { load_google_maps , load_places } from './utils'
-import Header from './Header'
+import HeaderC from './Header'
 import Footer from './Footer'
+import {
+  Checkbox,
+  Grid,
+  Header,
+  Image,
+  Menu,
+  Ref,
+  Segment,
+  Sidebar,
+} from 'semantic-ui-react'
 
 class App extends Component {
   constructor(props) {
@@ -138,25 +148,27 @@ console.log(google);
     this.setState({filterMarkers: l})
     //  console.log(filterMarkers);
     }
+//const [visible, setVisible] = React.useState(false)
 
   render() {
     return (
       <div>
-      <Header className= "App-header" />
-      <div id="map" />
-      <label
-      role="application"
-      aria-label="Map of Breweries around the Raleigh NC area"
-      />
-      <MapSidebar
-      searchedVenues={this.state.filterMarkers}
-      filterMarkers={this.filterMarkers}
-      pins={this.state.pins}
-      venues={this.state.venues}
-      map={this.state.map}
-      infowindow={this.state.infowindow}
-      google={this.state.google}/>
-      <Footer className="App-footer" text="Google Maps and Foursquare API 2018" title="Google Maps and Foursquare API 2018" />
+        <HeaderC className= "App-header" />
+        <div id="map" />
+        <label
+          role="application"
+          aria-label="Map of Breweries around the Raleigh NC area"
+        />
+        <MapSidebar
+          searchedVenues={this.state.filterMarkers}
+          filterMarkers={this.filterMarkers}
+          pins={this.state.pins}
+          venues={this.state.venues}
+          map={this.state.map}
+          infowindow={this.state.infowindow}
+          google={this.state.google}
+        />
+        <Footer className="App-footer" text="Google Maps and Foursquare API 2018" title="Google Maps and Foursquare API 2018" />
       </div>
     );
   }
